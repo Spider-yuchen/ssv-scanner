@@ -62,13 +62,14 @@ export class ContractProvider {
   public web3: Web3;
 
   constructor(networkAndEnv: string, nodeUrl: string) {
+    const fullVersion = ContractVersion[networkAndEnv.toUpperCase() as keyof typeof ContractVersion]
 
-    const [contractEnv, contractNetwork] = ContractVersion[networkAndEnv.toUpperCase() as keyof typeof ContractVersion].split(':');
+    const [contractEnv, contractNetwork] = fullVersion.split(':');
     let [version, network] = contractNetwork.split('.');
     version = version.toUpperCase();
     network = network.toUpperCase();
 
-    const result = ContractABI[contractNetwork];
+    const result = ContractABI[fullVersion];
     console.log('networkAndEnv', contractNetwork, result)
     const { jsonCoreData, jsonViewsData } = result;
 
