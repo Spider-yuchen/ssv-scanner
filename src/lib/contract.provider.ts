@@ -1,7 +1,8 @@
 import Web3 from 'web3';
+import * as fs from "fs";
 
 const requireFile = (path: string) => {
-  return require('fs').readFileSync(path, 'utf8');
+  return fs.readFileSync(path, 'utf8');
 }
 
 type ContractABIType = {
@@ -67,7 +68,9 @@ export class ContractProvider {
     version = version.toUpperCase();
     network = network.toUpperCase();
 
-    const { jsonCoreData, jsonViewsData } = ContractABI[networkAndEnv];
+    const result = ContractABI[networkAndEnv];
+    console.log('networkAndEnv', networkAndEnv, result)
+    const { jsonCoreData, jsonViewsData } = result;
 
     // Check if required properties exist in jsonData
     if (
