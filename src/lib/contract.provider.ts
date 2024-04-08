@@ -1,5 +1,9 @@
 import Web3 from 'web3';
 
+const requireFile = (path: string) => {
+  return require('fs').readFileSync(path, 'utf8');
+}
+
 type ContractABIType = {
   [key: string]: {
     jsonCoreData: any;
@@ -9,24 +13,24 @@ type ContractABIType = {
 
 const ContractABI : ContractABIType = {
   'prod:v4.mainnet': {
-    jsonCoreData: require('../shared/abi/prod.v4.mainnet.abi.json'),
-    jsonViewsData: require('../shared/abi/prod.v4.mainnet.views.abi.json'),
+    jsonCoreData: requireFile('../shared/abi/prod.v4.mainnet.abi.json'),
+    jsonViewsData: requireFile('../shared/abi/prod.v4.mainnet.views.abi.json'),
   },
   'prod:v4.prater': {
-    jsonCoreData: require('../shared/abi/prod.v4.prater.abi.json'),
-    jsonViewsData: require('../shared/abi/prod.v4.prater.views.abi.json'),
+    jsonCoreData: requireFile('../shared/abi/prod.v4.prater.abi.json'),
+    jsonViewsData: requireFile('../shared/abi/prod.v4.prater.views.abi.json'),
   },
   'prod:v4.holesky': {
-    jsonCoreData: require('../shared/abi/prod.v4.holesky.abi.json'),
-    jsonViewsData: require('../shared/abi/prod.v4.holesky.views.abi.json'),
+    jsonCoreData: requireFile('../shared/abi/prod.v4.holesky.abi.json'),
+    jsonViewsData: requireFile('../shared/abi/prod.v4.holesky.views.abi.json'),
   },
   'stage:v4.prater': {
-    jsonCoreData: require('../shared/abi/stage.v4.prater.abi.json'),
-    jsonViewsData: require('../shared/abi/stage.v4.prater.views.abi.json'),
+    jsonCoreData: requireFile('../shared/abi/stage.v4.prater.abi.json'),
+    jsonViewsData: requireFile('../shared/abi/stage.v4.prater.views.abi.json'),
   },
   'stage:v4.holesky': {
-    jsonCoreData: require('../shared/abi/stage.v4.holesky.abi.json'),
-    jsonViewsData: require('../shared/abi/stage.v4.holesky.views.abi.json'),
+    jsonCoreData: requireFile('../shared/abi/stage.v4.holesky.abi.json'),
+    jsonViewsData: requireFile('../shared/abi/stage.v4.holesky.views.abi.json'),
   },
 }
 
