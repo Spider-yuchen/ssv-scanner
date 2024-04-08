@@ -1,15 +1,34 @@
 import Web3 from 'web3';
 
-require('../shared/abi/prod.v4.mainnet.abi.json');
-require('../shared/abi/prod.v4.mainnet.views.abi.json');
-require('../shared/abi/prod.v4.prater.abi.json');
-require('../shared/abi/prod.v4.prater.views.abi.json');
-require('../shared/abi/prod.v4.holesky.abi.json');
-require('../shared/abi/prod.v4.holesky.views.abi.json');
-require('../shared/abi/stage.v4.prater.abi.json');
-require('../shared/abi/stage.v4.prater.views.abi.json');
-require('../shared/abi/stage.v4.holesky.abi.json');
-require('../shared/abi/stage.v4.holesky.views.abi.json');
+type ContractABIType = {
+  [key: string]: {
+    jsonCoreData: any;
+    jsonViewsData: any;
+  };
+};
+
+const ContractABI : ContractABIType = {
+  'prod:v4.mainnet': {
+    jsonCoreData: require('../shared/abi/prod.v4.mainnet.abi.json'),
+    jsonViewsData: require('../shared/abi/prod.v4.mainnet.views.abi.json'),
+  },
+  'prod:v4.prater': {
+    jsonCoreData: require('../shared/abi/prod.v4.prater.abi.json'),
+    jsonViewsData: require('../shared/abi/prod.v4.prater.views.abi.json'),
+  },
+  'prod:v4.holesky': {
+    jsonCoreData: require('../shared/abi/prod.v4.holesky.abi.json'),
+    jsonViewsData: require('../shared/abi/prod.v4.holesky.views.abi.json'),
+  },
+  'stage:v4.prater': {
+    jsonCoreData: require('../shared/abi/stage.v4.prater.abi.json'),
+    jsonViewsData: require('../shared/abi/stage.v4.prater.views.abi.json'),
+  },
+  'stage:v4.holesky': {
+    jsonCoreData: require('../shared/abi/stage.v4.holesky.abi.json'),
+    jsonViewsData: require('../shared/abi/stage.v4.holesky.views.abi.json'),
+  },
+}
 
 
 export type NetworkName = string;
@@ -44,29 +63,7 @@ export class ContractProvider {
     version = version.toUpperCase();
     network = network.toUpperCase();
 
-    let jsonCoreData;
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      jsonCoreData = require(`../shared/abi/${contractEnv}.${contractNetwork}.abi.json`);
-    } catch (err) {
-      console.error(
-        `Failed to load JSON data from ${contractEnv}.${contractNetwork}.abi.json`,
-        err,
-      );
-      throw err;
-    }
-
-    let jsonViewsData;
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      jsonViewsData = require(`../shared/abi/${contractEnv}.${contractNetwork}.views.abi.json`);
-    } catch (err) {
-      console.error(
-        `Failed to load JSON data from ${contractEnv}.${contractNetwork}.views.abi.json`,
-        err,
-      );
-      throw err;
-    }
+    const { jsonCoreData, jsonViewsData } = ContractABI[networkAndEnv];
 
     // Check if required properties exist in jsonData
     if (
