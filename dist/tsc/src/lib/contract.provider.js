@@ -5,7 +5,7 @@ const tslib_1 = require("tslib");
 const web3_1 = tslib_1.__importDefault(require("web3"));
 const fs = tslib_1.__importStar(require("fs"));
 const requireFile = (path) => {
-    return fs.readFileSync(path, 'utf8');
+    return JSON.parse(fs.readFileSync(path, 'utf8'));
 };
 const ContractABI = {
     'prod:v4.mainnet': {

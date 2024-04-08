@@ -2,7 +2,7 @@ import Web3 from 'web3';
 import * as fs from "fs";
 
 const requireFile = (path: string) => {
-  return fs.readFileSync(path, 'utf8');
+  return JSON.parse(fs.readFileSync(path, 'utf8'));
 }
 
 type ContractABIType = {
