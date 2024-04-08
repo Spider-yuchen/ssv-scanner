@@ -38,11 +38,12 @@ exports.ContractVersion = {
 };
 class ContractProvider {
     constructor(networkAndEnv, nodeUrl) {
-        const [contractEnv, contractNetwork] = exports.ContractVersion[networkAndEnv.toUpperCase()].split(':');
+        const fullVersion = exports.ContractVersion[networkAndEnv.toUpperCase()];
+        const [contractEnv, contractNetwork] = fullVersion.split(':');
         let [version, network] = contractNetwork.split('.');
         version = version.toUpperCase();
         network = network.toUpperCase();
-        const result = ContractABI[contractNetwork];
+        const result = ContractABI[fullVersion];
         console.log('networkAndEnv', contractNetwork, result);
         const { jsonCoreData, jsonViewsData } = result;
         // Check if required properties exist in jsonData
