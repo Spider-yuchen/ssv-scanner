@@ -12,6 +12,9 @@
     "nonce",
     "scanner"
   ],
+  "pkg": {
+      "assets": "../shared/abi/*.json"
+  },
   "main": "./dist/tsc/src/main.js",
   "types": "./dist/tsc/src/main.d.ts",
   "bin": {
