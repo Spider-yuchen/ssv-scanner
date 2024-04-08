@@ -3,8 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContractProvider = exports.ContractVersion = void 0;
 const tslib_1 = require("tslib");
 const web3_1 = tslib_1.__importDefault(require("web3"));
+const fs = tslib_1.__importStar(require("fs"));
 const requireFile = (path) => {
-    return require('fs').readFileSync(path, 'utf8');
+    return fs.readFileSync(path, 'utf8');
 };
 const ContractABI = {
     'prod:v4.mainnet': {
@@ -41,7 +42,9 @@ class ContractProvider {
         let [version, network] = contractNetwork.split('.');
         version = version.toUpperCase();
         network = network.toUpperCase();
-        const { jsonCoreData, jsonViewsData } = ContractABI[networkAndEnv];
+        const result = ContractABI[networkAndEnv];
+        console.log('networkAndEnv', networkAndEnv, result);
+        const { jsonCoreData, jsonViewsData } = result;
         // Check if required properties exist in jsonData
         if (!jsonCoreData.contractAddress ||
             !jsonCoreData.abi ||
