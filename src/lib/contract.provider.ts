@@ -1,4 +1,6 @@
 import Web3 from 'web3';
+import path from "path";
+import * as fs from "fs";
 
 export type NetworkName = string;
 export type ContractAddress = string;
@@ -32,27 +34,22 @@ export class ContractProvider {
     version = version.toUpperCase();
     network = network.toUpperCase();
 
+    const abiFilePath = path.join(__dirname, `../shared/abi/${contractEnv}.${contractNetwork}.abi.json`);
+    const viewsAbiFilePath = path.join(__dirname, `../shared/abi/${contractEnv}.${contractNetwork}.views.abi.json`);
+
     let jsonCoreData;
     try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      jsonCoreData = require(`../shared/abi/${contractEnv}.${contractNetwork}.abi.json`);
+      jsonCoreData = JSON.parse(fs.readFileSync(abiFilePath, 'utf-8'));
     } catch (err) {
-      console.error(
-        `Failed to load JSON data from ${contractEnv}.${contractNetwork}.abi.json`,
-        err,
-      );
+      console.error(`Failed to load JSON data from ${contractEnv}.${contractNetwork}.abi.json`, err);
       throw err;
     }
 
     let jsonViewsData;
     try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      jsonViewsData = require(`../shared/abi/${contractEnv}.${contractNetwork}.views.abi.json`);
+      jsonViewsData = JSON.parse(fs.readFileSync(viewsAbiFilePath, 'utf-8'));
     } catch (err) {
-      console.error(
-        `Failed to load JSON data from ${contractEnv}.${contractNetwork}.views.abi.json`,
-        err,
-      );
+      console.error(`Failed to load JSON data from ${contractEnv}.${contractNetwork}.views.abi.json`, err);
       throw err;
     }
 
