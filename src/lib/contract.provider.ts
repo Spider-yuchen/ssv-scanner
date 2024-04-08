@@ -1,6 +1,16 @@
 import Web3 from 'web3';
-import path from "path";
-import * as fs from "fs";
+
+require('../shared/abi/prod.v4.mainnet.abi.json');
+require('../shared/abi/prod.v4.mainnet.views.abi.json');
+require('../shared/abi/prod.v4.prater.abi.json');
+require('../shared/abi/prod.v4.prater.views.abi.json');
+require('../shared/abi/prod.v4.holesky.abi.json');
+require('../shared/abi/prod.v4.holesky.views.abi.json');
+require('../shared/abi/stage.v4.prater.abi.json');
+require('../shared/abi/stage.v4.prater.views.abi.json');
+require('../shared/abi/stage.v4.holesky.abi.json');
+require('../shared/abi/stage.v4.holesky.views.abi.json');
+
 
 export type NetworkName = string;
 export type ContractAddress = string;
@@ -34,22 +44,27 @@ export class ContractProvider {
     version = version.toUpperCase();
     network = network.toUpperCase();
 
-    const abiFilePath = path.join(__dirname, `../shared/abi/${contractEnv}.${contractNetwork}.abi.json`);
-    const viewsAbiFilePath = path.join(__dirname, `../shared/abi/${contractEnv}.${contractNetwork}.views.abi.json`);
-
     let jsonCoreData;
     try {
-      jsonCoreData = JSON.parse(fs.readFileSync(abiFilePath, 'utf-8'));
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      jsonCoreData = require(`../shared/abi/${contractEnv}.${contractNetwork}.abi.json`);
     } catch (err) {
-      console.error(`Failed to load JSON data from ${contractEnv}.${contractNetwork}.abi.json`, err);
+      console.error(
+        `Failed to load JSON data from ${contractEnv}.${contractNetwork}.abi.json`,
+        err,
+      );
       throw err;
     }
 
     let jsonViewsData;
     try {
-      jsonViewsData = JSON.parse(fs.readFileSync(viewsAbiFilePath, 'utf-8'));
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      jsonViewsData = require(`../shared/abi/${contractEnv}.${contractNetwork}.views.abi.json`);
     } catch (err) {
-      console.error(`Failed to load JSON data from ${contractEnv}.${contractNetwork}.views.abi.json`, err);
+      console.error(
+        `Failed to load JSON data from ${contractEnv}.${contractNetwork}.views.abi.json`,
+        err,
+      );
       throw err;
     }
 
