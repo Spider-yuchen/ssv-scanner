@@ -3,30 +3,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContractProvider = exports.ContractVersion = void 0;
 const tslib_1 = require("tslib");
 const web3_1 = tslib_1.__importDefault(require("web3"));
-const fs = tslib_1.__importStar(require("fs"));
-const requireFile = (path) => {
-    return JSON.parse(fs.readFileSync(path, 'utf8'));
-};
 const ContractABI = {
     'prod:v4.mainnet': {
-        jsonCoreData: requireFile('../shared/abi/prod.v4.mainnet.abi.json'),
-        jsonViewsData: requireFile('../shared/abi/prod.v4.mainnet.views.abi.json'),
+        jsonCoreData: require('../shared/abi/prod.v4.mainnet.abi.json'),
+        jsonViewsData: require('../shared/abi/prod.v4.mainnet.views.abi.json'),
     },
     'prod:v4.prater': {
-        jsonCoreData: requireFile('../shared/abi/prod.v4.prater.abi.json'),
-        jsonViewsData: requireFile('../shared/abi/prod.v4.prater.views.abi.json'),
+        jsonCoreData: require('../shared/abi/prod.v4.prater.abi.json'),
+        jsonViewsData: require('../shared/abi/prod.v4.prater.views.abi.json'),
     },
     'prod:v4.holesky': {
-        jsonCoreData: requireFile('../shared/abi/prod.v4.holesky.abi.json'),
-        jsonViewsData: requireFile('../shared/abi/prod.v4.holesky.views.abi.json'),
+        jsonCoreData: require('../shared/abi/prod.v4.holesky.abi.json'),
+        jsonViewsData: require('../shared/abi/prod.v4.holesky.views.abi.json'),
     },
     'stage:v4.prater': {
-        jsonCoreData: requireFile('../shared/abi/stage.v4.prater.abi.json'),
-        jsonViewsData: requireFile('../shared/abi/stage.v4.prater.views.abi.json'),
+        jsonCoreData: require('../shared/abi/stage.v4.prater.abi.json'),
+        jsonViewsData: require('../shared/abi/stage.v4.prater.views.abi.json'),
     },
     'stage:v4.holesky': {
-        jsonCoreData: requireFile('../shared/abi/stage.v4.holesky.abi.json'),
-        jsonViewsData: requireFile('../shared/abi/stage.v4.holesky.views.abi.json'),
+        jsonCoreData: require('../shared/abi/stage.v4.holesky.abi.json'),
+        jsonViewsData: require('../shared/abi/stage.v4.holesky.views.abi.json'),
     },
 };
 exports.ContractVersion = {
