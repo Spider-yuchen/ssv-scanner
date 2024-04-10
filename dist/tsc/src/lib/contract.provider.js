@@ -46,7 +46,6 @@ class ContractProvider {
         version = version.toUpperCase();
         network = network.toUpperCase();
         const result = ContractABI[fullVersion];
-        console.log('networkAndEnv', contractNetwork, result);
         const { jsonCoreData, jsonViewsData } = result;
         // Check if required properties exist in jsonData
         if (!jsonCoreData.contractAddress ||
