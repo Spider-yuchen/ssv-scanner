@@ -15,6 +15,7 @@ export declare const ContractVersion: {
     readonly MAINNET: "prod:v4.mainnet";
     readonly PRATER: "prod:v4.prater";
     readonly HOLESKY: "prod:v4.holesky";
+    readonly HOODI: "prod:v4.hoodi";
     readonly PRATER_STAGE: "stage:v4.prater";
     readonly HOLESKY_STAGE: "stage:v4.holesky";
 };
