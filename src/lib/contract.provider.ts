@@ -27,6 +27,10 @@ const ContractABI : ContractABIType = {
     jsonCoreData: requireFile('prod.v4.holesky.abi.json'),
     jsonViewsData: requireFile('prod.v4.holesky.views.abi.json'),
   },
+  'prod:v4.hoodi': {
+    jsonCoreData: requireFile('prod.v4.hoodi.abi.json'),
+    jsonViewsData: requireFile('prod.v4.hoodi.views.abi.json'),
+  },
   'stage:v4.prater': {
     jsonCoreData: requireFile('stage.v4.prater.abi.json'),
     jsonViewsData: requireFile('stage.v4.prater.views.abi.json'),
